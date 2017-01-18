@@ -6,13 +6,14 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/17 16:34:19 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/18 14:27:39 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
 
+# include "../libft/libft.h"
 # include <sys/types.h>
 # include <dirent.h>
 # include <sys/stat.h>
@@ -26,7 +27,7 @@ typedef struct	s_files
 {
 	char			*filename;
 	char			type;
-	int				modes;
+	char*			modes;
 	int				nlinks;
 	char			*owner;
 	char			*group;
