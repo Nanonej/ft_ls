@@ -1,4 +1,5 @@
 *.o
+*.a
 ft_ls
 a.out
 reflexion.c
