@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 19:00:36 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/17 14:43:52 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/19 11:47:53 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 # define BUFF_SIZE 4096
 # define ERROR -1
 
+# include "ft_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <wchar.h>
+# include <stdint.h>
 
 typedef struct	s_list
 {
@@ -114,5 +116,6 @@ void			ft_putwchar(wchar_t chr);
 char			*ft_itoa_base(uintmax_t n, int base, char sign);
 void			free_swap(char **src, char *dst);
 void			*ft_memcat(void *s1, void *s2, size_t len1, size_t len2);
+void			ft_strupper(char *s);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 22:47:07 by aridolfi          #+#    #+#              #
-#    Updated: 2017/01/17 14:43:36 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/01/19 12:56:18 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,9 +85,19 @@ SRCS 	=	free_swap.c			\
 			ft_strstr.c			\
 			ft_strsub.c			\
 			ft_strtrim.c		\
+			ft_strupper.c		\
 			ft_tolower.c		\
 			ft_toupper.c		\
 			get_next_line.c		\
+			\
+			printf/ft_printf.c	\
+			printf/init.c		\
+			printf/check.c		\
+			printf/opt.c		\
+			printf/conv_l.c		\
+			printf/conv_n.c		\
+			printf/conv_b.c		\
+			printf/format.c		\
 
 OBJT	= $(SRCS:.c=.o)
 
@@ -121,10 +131,11 @@ all: $(NAME)
 $(NAME): $(OBJT)
 	@ar rc $(NAME) $(OBJT)
 	@ranlib $(NAME)
+	@echo "--$(LOG_CLEAR)$(LOG_GREEN)$(NAME)$(LOG_NOCOLOR) ........................ $(LOG_VIOLET)Doune$(LOG_NOCOLOR)$(LOG_UP)"
 
 %.o: %.c
 	@echo "--$(LOG_CLEAR)$(LOG_GREEN)$(NAME)$(LOG_NOCOLOR) ........................ $(LOG_VIOLET)$<$(LOG_NOCOLOR)$(LOG_UP)"
-	@$(CC) $(CFLAGS) $(ADDFLAGS) -c -o $@ $^
+	@$(CC) $(CFLAGS) $(ADDFLAGS) -c -o $@ $^ -I ./printf -I ./
 
 clean:
 	@rm -f $(OBJT)
