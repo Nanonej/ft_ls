@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/18 14:27:39 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/19 14:32:32 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ typedef struct	s_files
 	struct s_file	*prev;
 	struct s_file	*next;
 }				t_files;
+
+void 			get_flags(char *flags, char *argv);
 
 #endif

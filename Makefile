@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/17 16:18:14 by aridolfi          #+#    #+#              #
-#    Updated: 2017/01/18 14:24:14 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/01/19 14:24:13 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ LIBDIR	= ./libft
 # Sources && Objs
 SRCS	= 					\
 			ft_ls.c			\
+			flags.c			\
 
 
 OBJS	= $(SRCS:.c=.o)
@@ -59,11 +60,11 @@ all				:	$(NAME)
 
 $(NAME)			:	$(OBJS)
 					@make -C ./libft
-		  			@$(CC) $(CFLAGS) -o $@ $^ -I$(INCDIR) -L $(LIBDIR)
+		  			@$(CC) $(CFLAGS) -o $@ $^ ./libft/libft.a -I$(INCDIR) -I ./libft -I ./libft/printf
 
 %.o 			: 	$(SRCDIR)/%.c
 					@echo "--$(LOG_CLEAR)$(LOG_GREEN)$(NAME)$(LOG_NOCOLOR) ........................ $(LOG_VIOLET)$<$(LOG_NOCOLOR)$(LOG_UP)"
-					@$(CC) $(CFLAGS) $(ADDFLAGS) -c -o $@ $^ -I$(INCDIR)
+					@$(CC) $(CFLAGS) $(ADDFLAGS) -c -o $@ $^ -I$(INCDIR) -I ./libft -I ./libft/printf
 
 clean			:
 					@make clean -C ./libft
