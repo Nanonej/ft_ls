@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/17 16:18:14 by aridolfi          #+#    #+#              #
-#    Updated: 2017/01/19 14:24:13 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/01/20 14:07:33 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBDIR	= ./libft
 
 # Sources && Objs
 SRCS	= 					\
-			ft_ls.c			\
+			main.c			\
 			flags.c			\
 
 
