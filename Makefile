@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/17 16:18:14 by aridolfi          #+#    #+#              #
-#    Updated: 2017/01/21 14:12:30 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/01/21 21:17:34 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ LIBDIR	= ./libft
 
 # Sources && Objs
 SRCS	= 					\
+			arraylist.c		\
 			check_error.c	\
 			main.c			\
 			ft_ls.c			\
