@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/20 16:27:38 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/21 13:57:50 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				main(int argc, char **argv)
 	char	*flags;
 
 	argv++;
-	check_alloc((flags = ft_strnew(5)));
+	check_malloc((flags = ft_strnew(5)));
 	while (argc > 1 && **argv == '-' && ft_strlen(*argv) > 1)
 	{
 		get_flags(flags, *argv);

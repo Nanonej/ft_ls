@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/21 13:19:13 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/21 13:57:28 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ typedef struct	s_files
 	struct s_file	*next;
 }				t_files;
 
-void 	ft_ls(char *arg, char *flags)
+void	*ft_ls_perror(char *s);
+void	*check_malloc(void *ptr);
+
+void 	ft_ls(char *arg, char *flags);
 
 #endif
