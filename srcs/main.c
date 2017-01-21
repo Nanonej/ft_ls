@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/21 13:57:50 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/21 15:58:06 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int				main(int argc, char **argv)
 		argv++;
 		argc--;
 	}
-	while (argc > 1)
+	while (argc >= 1)
 	{
-		if (argc > 2)
+		if (argc >= 2)
 			ft_ls(*argv, flags);
 		else
 			ft_ls(".", flags);
