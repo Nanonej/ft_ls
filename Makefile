@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/17 16:18:14 by aridolfi          #+#    #+#              #
-#    Updated: 2017/01/21 21:17:34 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/01/22 15:49:38 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ SRCS	= 					\
 			check_error.c	\
 			main.c			\
 			ft_ls.c			\
+			get_info.c		\
+			init.c			\
 
 
 OBJS	= $(SRCS:.c=.o)

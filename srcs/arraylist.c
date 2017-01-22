@@ -6,17 +6,17 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:13:33 by tgauvrit          #+#    #+#             */
-/*   Updated: 2017/01/19 17:10:55 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/22 15:02:16 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arraylist.h"
+#include "ft_ls.h"
 
 t_data		*al_create(void)
 {
 	t_al	*al;
 
-	al = malloc(sizeof(t_al) + (sizeof(t_data) * AL_REALLOC));
+	al = palloc(sizeof(t_al) + (sizeof(t_data) * AL_REALLOC));
 	al->end = (t_data*)(al + 1);
 	al->mem = al->end + AL_REALLOC;
 	return (al->end);
@@ -37,7 +37,7 @@ void		al_add(t_data **start, t_data data)
 	if (al->end == al->mem)
 	{
 		tmp = al;
-		al = malloc(sizeof(t_al)
+		al = palloc(sizeof(t_al)
 			      + (sizeof(t_data) * (AL_REALLOC + (tmp->end - *start))));
 		al->end = (t_data*)(al + 1);
 		while (*start != tmp->end)

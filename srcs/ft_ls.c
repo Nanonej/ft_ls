@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 13:14:46 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/21 17:13:01 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/22 14:54:16 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ void 	ft_lsrec(char *arg, char *flags)
 {
 	DIR				*dir;
 	struct dirent	*dirent;
+	t_file			**files;
 
-	if (!(dir = opendir(arg)))
+	files = al_create();
+	if (!(dir = opendir(arg)) && flags[0] != 'R')
 	{
 		ft_ls_perror(arg);
 		return ;
 	}
 	while ((dirent = readdir(dir)))
-		init_tab(dirent->d_name);
+		init_al(files, dirent->d_name);
 	closedir(dir);
 }
 

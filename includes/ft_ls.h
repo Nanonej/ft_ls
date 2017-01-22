@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/21 21:15:47 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/22 15:45:23 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,7 @@
 
 # define AL_REALLOC 256
 
-typedef struct s_file	t_data;
-
-typedef struct			s_al
-{
-	t_data					*end;
-	t_data					*mem;
-}						t_al;
-
-typedef struct			s_files
+typedef struct			s_file
 {
 	char					*filename;
 	char					type;
@@ -47,7 +39,15 @@ typedef struct			s_files
 	char					*path;
 	struct s_file			*prev;
 	struct s_file			*next;
-}						t_files;
+}						t_file;
+
+typedef t_file			*t_data;
+
+typedef struct			s_al
+{
+	t_data					*end;
+	t_data					*mem;
+}						t_al;
 
 t_data					*al_create(void);
 void					al_destroy(t_data **al);
@@ -56,9 +56,14 @@ size_t					al_size(t_data *al);
 t_data					*al_end(t_data *al);
 
 void					ft_ls_perror(char *s);
+void 					*palloc(size_t size);
 void					check_malloc(void *ptr);
 
 void 					ft_ls(char *arg, char *flags);
 void 					ft_lsrec(char *directory, char *flags);
+
+void 					init_al(t_file **files, char *name);
+
+char					get_type(struct stat filestat);
 
 #endif
