@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/22 15:45:23 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/22 18:31:44 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include <sys/types.h>
+#include <sys/xattr.h>
 # include <dirent.h>
 # include <sys/stat.h>
 # include <unistd.h>
@@ -23,6 +24,7 @@
 # include <time.h>
 # include <stdio.h> ////////////////////////////////////////////////////////////
 # include <stdlib.h>
+# include <sys/acl.h>
 
 # define AL_REALLOC 256
 
@@ -64,6 +66,8 @@ void 					ft_lsrec(char *directory, char *flags);
 
 void 					init_al(t_file **files, char *name);
 
+int						getacl(char *name);
 char					get_type(struct stat filestat);
+char					*get_modes(struct stat filestat, t_file *file_data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/22 15:57:09 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/22 18:32:25 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ static t_file	*init_file(char *name)
 	// struct group	*grp;
 	t_file		*file_data = NULL;
 
-	stat(name, &filestat);
+	lstat(name, &filestat);
 	file_data = (t_file *)palloc(sizeof(t_file));
 	check_malloc(file_data->filename = ft_strdup(name));
 	file_data->type = get_type(filestat);
-	check_malloc()
-	ft_printf("Nom: %s\nType: %c\n\n", file_data->filename, file_data->type);
+	check_malloc(file_data->modes = get_modes(filestat, file_data));
+	ft_printf("Nom: %s\nType: %c\nModes: %s\n\n", file_data->filename,
+				file_data->type, file_data->modes);
 	return (file_data);
 }
 
