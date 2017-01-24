@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/17 16:18:14 by aridolfi          #+#    #+#              #
-#    Updated: 2017/01/22 15:49:38 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/01/24 17:13:53 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,9 @@ all				:	$(NAME)
 $(NAME)			:	$(OBJS)
 					@make -C ./libft
 		  			@$(CC) $(CFLAGS) -o $@ $^ ./libft/libft.a -I$(INCDIR) -I ./libft -I ./libft/printf
+					@echo ""
+					@cat cake.ascii
+					@echo ""
 
 %.o 			: 	$(SRCDIR)/%.c
 					@echo "--$(LOG_CLEAR)$(LOG_GREEN)$(NAME)$(LOG_NOCOLOR) ........................ $(LOG_VIOLET)$<$(LOG_NOCOLOR)$(LOG_UP)"
