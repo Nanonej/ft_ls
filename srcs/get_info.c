@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 15:43:15 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/22 18:55:37 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/27 14:27:42 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ int	getacl(char *name)
 	return (0);
 }
 
-char	get_type(struct stat filestat)
+char	get_type(t_stat filestat, t_file **file_adress)
 {
-	char ret;
+	t_file	*file_data;
+	char	ret;
 
+	file_data = *file_adress;
 	ret = '-';
 	if (S_ISDIR(filestat.st_mode))
 		ret = 'd';
@@ -49,35 +51,38 @@ char	get_type(struct stat filestat)
 		ret = 'l';
 	else if (S_ISSOCK(filestat.st_mode))
 		ret = 's';
+	if (file_data->type == 'c')
+	{
+		file_data->minor = filestat.st_rdev % 256;
+		file_data->major = filestat.st_rdev;
+	}
 	return (ret);
 }
 
-char	*get_modes(struct stat filestat, t_file *file_data)
+char	*get_modes(t_stat filestat, t_file *file_data)
 {
-	char *path;
 	char *str;
 
-	path = file_data->filename;
 	check_malloc(str = ft_strnew(10));
 	str[0] = ((filestat.st_mode & S_IRUSR) ? 'r' : '-');
 	str[1] = ((filestat.st_mode & S_IWUSR) ? 'w' : '-');
 	str[2] = ((filestat.st_mode & S_IXUSR) ? 'x' : '-');
-	// if (filestat.st_mode & S_ISUID)
-	// 	str[2] = (str[2] == '-' ? 'S' : 's');
+	if (filestat.st_mode & S_ISUID)
+		str[2] = (str[2] == '-' ? 'S' : 's');
 	str[3] = ((filestat.st_mode & S_IRGRP) ? 'r' : '-');
 	str[4] = ((filestat.st_mode & S_IWGRP) ? 'w' : '-');
 	str[5] = ((filestat.st_mode & S_IXGRP) ? 'x' : '-');
-	// if (filestat.st_mode & S_ISGID)
-	// 	str[5] = (str[5] == '-' ? 'S' : 's');
+	if (filestat.st_mode & S_ISGID)
+		str[5] = (str[5] == '-' ? 'S' : 's');
 	str[6] = ((filestat.st_mode & S_IROTH) ? 'r' : '-');
 	str[7] = ((filestat.st_mode & S_IWOTH) ? 'w' : '-');
 	str[8] = ((filestat.st_mode & S_IXOTH) ? 'x' : '-');
-	// if (filestat.st_mode & S_ISVTX)
-	// 	str[8] = (str[8] == '-' ? 'T' : 't');
-	if (/*(file_data->type != 'l' && listxattr(path, NULL, 0, 0) > 0) ||
-		(file_data->type == 'l' && listxattr(path, NULL, 0, XATTR_NOFOLLOW) > 0)*/0)
+	if (filestat.st_mode & S_ISVTX)
+		str[8] = (str[8] == '-' ? 'T' : 't');
+	if ((file_data->type != 'l' && listxattr(file_data->filename, NULL, 0, 0) > 0) ||
+		(file_data->type == 'l' && listxattr(file_data->filename, NULL, 0, XATTR_NOFOLLOW) > 0))
 		str[9] = '@';
 	else
-		str[9] = (getacl(path) ? '+' : ' ');
+		str[9] = (getacl(file_data->filename) ? '+' : ' ');
 	return (str);
 }

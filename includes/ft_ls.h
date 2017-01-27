@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/22 18:31:44 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/27 14:16:41 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../libft/libft.h"
 # include <sys/types.h>
-#include <sys/xattr.h>
+# include <sys/xattr.h>
 # include <dirent.h>
 # include <sys/stat.h>
 # include <unistd.h>
@@ -28,6 +28,11 @@
 
 # define AL_REALLOC 256
 
+typedef struct stat		t_stat;
+typedef struct dirent	t_dirent;
+typedef struct passwd	t_pwd;
+typedef struct group	t_grp;
+
 typedef struct			s_file
 {
 	char					*filename;
@@ -38,9 +43,10 @@ typedef struct			s_file
 	char					*group;
 	long long int			size;
 	char					*date;
+	int						total;
 	char					*path;
-	struct s_file			*prev;
-	struct s_file			*next;
+	int						minor;
+	int						major;
 }						t_file;
 
 typedef t_file			*t_data;
@@ -62,12 +68,12 @@ void 					*palloc(size_t size);
 void					check_malloc(void *ptr);
 
 void 					ft_ls(char *arg, char *flags);
-void 					ft_lsrec(char *directory, char *flags);
 
-void 					init_al(t_file **files, char *name);
+t_file					*fill_file_data(char *name);
+// t_file					**ft_init(char *arg);
 
 int						getacl(char *name);
-char					get_type(struct stat filestat);
-char					*get_modes(struct stat filestat, t_file *file_data);
+char					get_type(t_stat filestat, t_file **file_data);
+char					*get_modes(t_stat filestat, t_file *file_data);
 
 #endif
