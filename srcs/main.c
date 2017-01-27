@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/27 14:20:40 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/27 14:38:10 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void 	ft_ls(char *name, char *flags)
 
 	if (flags[2] == 'l' && (iflink = fill_file_data(name)) && iflink->type == 'l')
 	{
-		// print -l link
+		ft_printf("%c%s    %d %s    %s    %lld %s %s\n", iflink->type,
+					iflink->modes, iflink->nlinks, iflink->owner,
+					 iflink->group, iflink->size, iflink->date,
+					  iflink->filename);
 		exit(1);
 	}
 }

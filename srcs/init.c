@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/27 14:16:34 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/27 14:37:07 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,6 @@ t_file			*fill_file_data(char *name)
 	file_data->size = filestat.st_size;
 	check_malloc(file_data->date = ft_strsub(ctime(&filestat.st_mtime), 4, 12));
 	file_data->total = filestat.st_blocks;
-	ft_printf("%c%s    %d %s    %s    %lld %s %s\n", file_data->type,
-				file_data->modes, file_data->nlinks, file_data->owner,
-				 file_data->group, file_data->size, file_data->date,
-				  file_data->filename);
 	return (file_data);
 }
 
