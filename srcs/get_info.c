@@ -6,13 +6,23 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 15:43:15 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/27 14:27:42 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/27 19:34:30 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	getacl(char *name)
+char	*get_path(char *name, char *file_name)
+{
+	char	*path;
+
+	if (name[ft_strlen(name) - 1] != '/')
+		check_malloc(name = ft_strjoin(name, "/"));
+	check_malloc(path = ft_strjoin(name, file_name));
+	return (path);
+}
+
+int		getacl(char *name)
 {
 	acl_t		facl;
 	acl_entry_t	ae;
@@ -32,12 +42,10 @@ int	getacl(char *name)
 	return (0);
 }
 
-char	get_type(t_stat filestat, t_file **file_adress)
+char	get_type(t_stat filestat, t_file **file_data)
 {
-	t_file	*file_data;
 	char	ret;
 
-	file_data = *file_adress;
 	ret = '-';
 	if (S_ISDIR(filestat.st_mode))
 		ret = 'd';
@@ -51,10 +59,10 @@ char	get_type(t_stat filestat, t_file **file_adress)
 		ret = 'l';
 	else if (S_ISSOCK(filestat.st_mode))
 		ret = 's';
-	if (file_data->type == 'c')
+	if ((*file_data)->type == 'c')
 	{
-		file_data->minor = filestat.st_rdev % 256;
-		file_data->major = filestat.st_rdev;
+		(*file_data)->minor = filestat.st_rdev % 256;
+		(*file_data)->major = filestat.st_rdev;
 	}
 	return (ret);
 }
@@ -79,10 +87,10 @@ char	*get_modes(t_stat filestat, t_file *file_data)
 	str[8] = ((filestat.st_mode & S_IXOTH) ? 'x' : '-');
 	if (filestat.st_mode & S_ISVTX)
 		str[8] = (str[8] == '-' ? 'T' : 't');
-	if ((file_data->type != 'l' && listxattr(file_data->filename, NULL, 0, 0) > 0) ||
-		(file_data->type == 'l' && listxattr(file_data->filename, NULL, 0, XATTR_NOFOLLOW) > 0))
+	if ((file_data->type != 'l' && listxattr(file_data->path, NULL, 0, 0) > 0) ||
+		(file_data->type == 'l' && listxattr(file_data->path, NULL, 0, XATTR_NOFOLLOW) > 0))
 		str[9] = '@';
 	else
-		str[9] = (getacl(file_data->filename) ? '+' : ' ');
+		str[9] = (getacl(file_data->path) ? '+' : ' ');
 	return (str);
 }

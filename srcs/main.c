@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/27 14:38:10 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/27 20:09:19 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,24 @@ void 	ft_ls(char *name, char *flags)
 	t_file	*iflink;
 	// t_file	**files;
 
-	if (flags[2] == 'l' && (iflink = fill_file_data(name)) && iflink->type == 'l')
+	iflink = fill_file_data(name, name);
+	if (flags[2] == 'l' && iflink && iflink->type == 'l')
 	{
-		ft_printf("%c%s    %d %s    %s    %lld %s %s\n", iflink->type,
+		//
+		ft_printf("[WIP] - %c%s    %d %s    %s    %lld %s %s\n", iflink->type,
 					iflink->modes, iflink->nlinks, iflink->owner,
 					 iflink->group, iflink->size, iflink->date,
 					  iflink->filename);
 		exit(1);
+	}
+	free_struct(iflink);
+	if (flags[0] == 'R')
+		// ft_ls_rec(name, flags);
+		ft_printf("[WIP]\n");
+	else
+	{
+		//
+		ft_printf("[WIP]\n");
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/27 14:16:41 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/27 20:03:21 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct			s_file
 {
 	char					*filename;
 	char					type;
-	char*					modes;
+	char					*modes;
 	int						nlinks;
 	char					*owner;
 	char					*group;
@@ -64,14 +64,17 @@ size_t					al_size(t_data *al);
 t_data					*al_end(t_data *al);
 
 void					ft_ls_perror(char *s);
-void 					*palloc(size_t size);
+void					*palloc(size_t size);
 void					check_malloc(void *ptr);
 
-void 					ft_ls(char *arg, char *flags);
+void					free_struct(t_file *file_data);
 
-t_file					*fill_file_data(char *name);
-// t_file					**ft_init(char *arg);
+void					ft_ls(char *arg, char *flags);
 
+t_file					*fill_file_data(char *name, char *path);
+// t_file					**ft_init_al(char *flags, char *name);
+
+char					*get_path(char *name, char *file_name);
 int						getacl(char *name);
 char					get_type(t_stat filestat, t_file **file_data);
 char					*get_modes(t_stat filestat, t_file *file_data);
