@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/17 16:18:14 by aridolfi          #+#    #+#              #
-#    Updated: 2017/01/27 15:19:14 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/01/28 11:23:59 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRCS	= 					\
 			check_error.c	\
 			free.c			\
 			main.c			\
-			ft_ls.c			\
 			get_info.c		\
 			init.c			\
 
