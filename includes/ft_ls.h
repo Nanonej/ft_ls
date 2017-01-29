@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/27 20:03:21 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/29 17:54:50 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ char					*get_path(char *name, char *file_name);
 int						getacl(char *name);
 char					get_type(t_stat filestat, t_file **file_data);
 char					*get_modes(t_stat filestat, t_file *file_data);
+
+void 					ft_ls_rec(name, flags);
 
 #endif
