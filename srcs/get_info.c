@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 15:43:15 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/27 19:34:30 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/30 18:41:33 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		getacl(char *name)
 	return (0);
 }
 
-char	get_type(t_stat filestat, t_file **file_data)
+char	get_type(t_stat filestat, t_file **files)
 {
 	char	ret;
 
@@ -59,15 +59,15 @@ char	get_type(t_stat filestat, t_file **file_data)
 		ret = 'l';
 	else if (S_ISSOCK(filestat.st_mode))
 		ret = 's';
-	if ((*file_data)->type == 'c')
+	if ((*files)->type == 'c')
 	{
-		(*file_data)->minor = filestat.st_rdev % 256;
-		(*file_data)->major = filestat.st_rdev;
+		(*files)->minor = filestat.st_rdev % 256;
+		(*files)->major = filestat.st_rdev;
 	}
 	return (ret);
 }
 
-char	*get_modes(t_stat filestat, t_file *file_data)
+char	*get_modes(t_stat filestat, t_file *f_d)
 {
 	char *str;
 
@@ -87,10 +87,39 @@ char	*get_modes(t_stat filestat, t_file *file_data)
 	str[8] = ((filestat.st_mode & S_IXOTH) ? 'x' : '-');
 	if (filestat.st_mode & S_ISVTX)
 		str[8] = (str[8] == '-' ? 'T' : 't');
-	if ((file_data->type != 'l' && listxattr(file_data->path, NULL, 0, 0) > 0) ||
-		(file_data->type == 'l' && listxattr(file_data->path, NULL, 0, XATTR_NOFOLLOW) > 0))
+	if ((f_d->type != 'l' && listxattr(f_d->path, NULL, 0, 0) > 0) ||
+		(f_d->type == 'l' && listxattr(f_d->path, NULL, 0, XATTR_NOFOLLOW) > 0))
 		str[9] = '@';
 	else
-		str[9] = (getacl(file_data->path) ? '+' : ' ');
+		str[9] = (getacl(f_d->path) ? '+' : ' ');
 	return (str);
+}
+
+char	*get_color(t_file *file_data)
+{
+	if (file_data->type == 'd' && file_data->modes[7] == 'w' &&
+		(file_data->modes[8] == 't' || file_data->modes[8] == 'T'))
+		return ("\033[38;5;000m\033[48;5;002m");
+	if (file_data->type == 'd' && file_data->modes[7] == 'w')
+		return ("\033[38;5;000m\033[48;5;011m");
+	if (file_data->type == 'd')
+		return ("\033[38;5;014m");
+	if (file_data->type == 'l')
+		return ("\033[38;5;005m");
+	if (file_data->type == 's')
+		return ("\033[38;5;002m");
+	if (file_data->type == 'p')
+		return ("\033[38;5;011m");
+	if (file_data->type == 'b')
+		return ("\033[38;5;004m\033[48;5;014m");
+	if (file_data->type == 'c')
+		return ("\033[38;5;004m\033[48;5;011m");
+	if (file_data->modes[2] == 's' || file_data->modes[2] == 'S')
+		return ("\033[38;5;000m\033[48;5;001m");
+	if (file_data->modes[5] == 's' || file_data->modes[5] == 'S')
+		return ("\033[38;5;000m\033[48;5;014m");
+	if (ft_strfind(file_data->modes, "x") != -1)
+		return ("\033[38;5;001m");
+	if (file_data->type == '-')
+		return ("\033[38;5;007m");
 }

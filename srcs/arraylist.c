@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:13:33 by tgauvrit          #+#    #+#             */
-/*   Updated: 2017/01/22 15:02:16 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/29 18:28:35 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		al_add(t_data **start, t_data data)
 	{
 		tmp = al;
 		al = palloc(sizeof(t_al)
-			      + (sizeof(t_data) * (AL_REALLOC + (tmp->end - *start))));
+				+ (sizeof(t_data) * (AL_REALLOC + (tmp->end - *start))));
 		al->end = (t_data*)(al + 1);
 		while (*start != tmp->end)
 		{

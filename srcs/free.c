@@ -6,13 +6,13 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 14:42:59 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/29 16:41:54 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/29 18:29:38 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void 	free_struct(t_file *file_data)
+void	free_struct(t_file *file_data)
 {
 	if (file_data->filename)
 		free(file_data->filename);
@@ -29,7 +29,7 @@ void 	free_struct(t_file *file_data)
 	free(file_data);
 }
 
-void 	free_al(t_file **files)
+void	free_al(t_file **files)
 {
 	t_file **tmp;
 

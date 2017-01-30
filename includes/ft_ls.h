@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/29 17:54:50 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/29 18:35:21 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,13 @@ void					free_struct(t_file *file_data);
 void					ft_ls(char *arg, char *flags);
 
 t_file					*fill_file_data(char *name, char *path);
-// t_file					**ft_init_al(char *flags, char *name);
+t_file					**ft_init_al(char *flags, char *name);
 
 char					*get_path(char *name, char *file_name);
 int						getacl(char *name);
-char					get_type(t_stat filestat, t_file **file_data);
-char					*get_modes(t_stat filestat, t_file *file_data);
+char					get_type(t_stat filestat, t_file **files);
+char					*get_modes(t_stat filestat, t_file *f_d);
+char					*get_color(t_file *file_data);
 
 void 					ft_ls_rec(name, flags);
 

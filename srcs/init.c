@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/29 17:28:54 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/30 19:12:50 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ t_file			**ft_init_al(char *flags, char *name)
 	files = al_create();
 	while ((dirent = readdir(dir)))
 		al_add(&files, fill_file_data(name, path));
-	if (flags[2] != 'l')
-		// print
-	else
+	if (flags[2] == 'l')
 		// print -l
+	else
+		// print_ls(flags, files);
 	closedir(dir);
 	free(path);
 	return (files);

@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:54:07 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/29 15:26:33 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/29 18:29:03 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_ls_perror(char *s)
 	perror(s);
 }
 
-void 	*palloc(size_t size)
+void	*palloc(size_t size)
 {
 	void *ptr;
 
