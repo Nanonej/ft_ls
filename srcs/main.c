@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/29 17:51:09 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/31 20:22:24 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void 	ft_ls(char *name, char *flags)
 	}
 	free_struct(iflink);
 	if (flags[0] == 'R')
+	{
 		ft_ls_rec(name, flags);
 		ft_printf("[WIP]\n");
+	}
 	else
 	{
 		//

@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/30 19:12:50 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/31 20:38:24 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,22 @@ t_file			**ft_init_al(char *flags, char *name)
 
 	if (name[ft_strlen(name) - 1] != '/')
 		check_malloc(name = ft_strjoin(name, "/"));
-	if (!(dir = opendir(arg)))
+	if (!(dir = opendir(name)))
 	{
-		ft_ls_perror(arg);
+		ft_ls_perror(name);
 		return ((files = NULL));
 	}
-	check_malloc(path = get_path(name, dirent->d_name));
 	files = al_create();
 	while ((dirent = readdir(dir)))
-		al_add(&files, fill_file_data(name, path));
+	{
+		check_malloc(path = get_path(name, dirent->d_name));
+		al_add(&files, fill_file_data(dirent->d_name, path));
+		free(path);
+	}
 	if (flags[2] == 'l')
-		// print -l
+		ft_printf("print -l\n");
 	else
-		// print_ls(flags, files);
+		print_ls(flags, files);
 	closedir(dir);
-	free(path);
 	return (files);
 }

@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/31 18:44:22 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/31 20:13:23 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void					*palloc(size_t size);
 void					check_malloc(void *ptr);
 
 void					free_struct(t_file *file_data);
+void					free_al(t_file **files);
 
 void					ft_ls(char *arg, char *flags);
 
@@ -81,6 +82,8 @@ char					get_type(t_stat filestat, t_file **files);
 char					*get_modes(t_stat filestat, t_file *f_d);
 char					*get_color(t_file *file_data);
 
-void 					ft_ls_rec(name, flags);
+void 					ft_ls_rec(char *name, char *flags);
+
+void 					print_ls(char* flags, t_file **files);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 15:43:15 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/30 18:41:33 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/31 19:04:41 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,7 @@ char	*get_color(t_file *file_data)
 		return ("\033[38;5;000m\033[48;5;001m");
 	if (file_data->modes[5] == 's' || file_data->modes[5] == 'S')
 		return ("\033[38;5;000m\033[48;5;014m");
-	if (ft_strfind(file_data->modes, "x") != -1)
+	if (ft_strfind(file_data->modes, 'x') != -1)
 		return ("\033[38;5;001m");
-	if (file_data->type == '-')
-		return ("\033[38;5;007m");
+	return ("\033[38;5;007m");
 }

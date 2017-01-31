@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/17 16:18:14 by aridolfi          #+#    #+#              #
-#    Updated: 2017/01/28 11:23:59 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/01/31 20:10:21 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,11 @@ SRCS	= 					\
 			arraylist.c		\
 			check_error.c	\
 			free.c			\
-			main.c			\
 			get_info.c		\
 			init.c			\
+			main.c			\
+			print.c			\
+			recursive.c		\
 
 
 OBJS	= $(SRCS:.c=.o)
