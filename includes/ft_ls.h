@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/29 18:35:21 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/01/31 18:44:22 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <sys/acl.h>
 
 # define AL_REALLOC 256
+# define RESET_COLORS "\033[0;00m"
 
 typedef struct stat		t_stat;
 typedef struct dirent	t_dirent;
