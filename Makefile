@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/17 16:18:14 by aridolfi          #+#    #+#              #
-#    Updated: 2017/01/31 20:10:21 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/02/01 15:29:55 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ $(NAME)			:	$(OBJS)
 					@make -C ./libft
 		  			@$(CC) $(CFLAGS) -o $@ $^ ./libft/libft.a -I$(INCDIR) -I ./libft -I ./libft/printf
 					@echo ""
-					@cat cake.ascii
+					@cat cake-v2.ascii
 					@echo ""
 
 %.o 			: 	$(SRCDIR)/%.c

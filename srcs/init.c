@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/31 20:38:24 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/02 16:47:57 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ t_file			*fill_file_data(char *name, char *path)
 	if (lstat(path, &filestat) == -1)
 	{
 		ft_ls_perror(path);
-		return (file_data);
+		free_struct(file_data);
+		return (NULL);
 	}
 	file_data->type = get_type(filestat, &file_data);
 	check_malloc(file_data->modes = get_modes(filestat, file_data));

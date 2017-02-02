@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/31 20:13:23 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/02 16:39:34 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdio.h> ////////////////////////////////////////////////////////////
 # include <stdlib.h>
 # include <sys/acl.h>
+# include <errno.h>
 
 # define AL_REALLOC 256
 # define RESET_COLORS "\033[0;00m"
@@ -82,8 +83,8 @@ char					get_type(t_stat filestat, t_file **files);
 char					*get_modes(t_stat filestat, t_file *f_d);
 char					*get_color(t_file *file_data);
 
-void 					ft_ls_rec(char *name, char *flags);
+void					ft_ls_rec(char *name, char *flags);
 
-void 					print_ls(char* flags, t_file **files);
+void					print_ls(char *flags, t_file **files);
 
 #endif

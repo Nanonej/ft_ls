@@ -6,17 +6,18 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/31 20:22:24 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/02 16:47:24 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void 	ft_ls(char *name, char *flags)
+void			ft_ls(char *name, char *flags)
 {
 	t_file	*iflink;
 
-	iflink = fill_file_data(name, name);
+	if (!(iflink = fill_file_data(name, name)))
+		return ;
 	if (iflink && flags[2] == 'l' && iflink->type == 'l')
 	{
 		//
@@ -24,14 +25,11 @@ void 	ft_ls(char *name, char *flags)
 					iflink->modes, iflink->nlinks, iflink->owner,
 					 iflink->group, iflink->size, iflink->date,
 					  iflink->filename);
-		exit(1);
+		return ;
 	}
 	free_struct(iflink);
 	if (flags[0] == 'R')
-	{
 		ft_ls_rec(name, flags);
-		ft_printf("[WIP]\n");
-	}
 	else
 	{
 		//
@@ -39,7 +37,7 @@ void 	ft_ls(char *name, char *flags)
 	}
 }
 
-static void 	get_flags(char *flags, char *argv)
+static void		get_flags(char *flags, char *argv)
 {
 	argv++;
 	while (*argv)

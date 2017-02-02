@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 17:21:27 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/31 20:49:01 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/02 16:45:41 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,15 @@ void 	ft_ls_rec(char *name, char *flags)
 	tmp = files;
 	while (tmp != al_end(files))
 	{
-		/*if (ft_strequ((*tmp)->filename, ".") && ft_strequ((*tmp)->filename,
-			"..") && ((*tmp)->filename[0] != '.' || flags[1] == 'a'))*/
-		if (((*tmp)->filename[0] != '.' || (*tmp)->filename[1] != 0) && ((*tmp)->filename[1] != '.'
-			|| (*tmp)->filename[2] != 0) && ((*tmp)->filename[0] != '.' || flags[1] == 'a'))
+		if (((*tmp)->filename[0] != '.' || (*tmp)->filename[1] != 0) &&
+			((*tmp)->filename[1] != '.' || (*tmp)->filename[2] != 0) &&
+			((*tmp)->filename[0] != '.' || flags[1] == 'a'))
 		{
 			check_malloc(path = get_path(name, (*tmp)->filename));
-			ft_printf("\n%s:\n", path);
-			if ((*tmp)->type != 'l' && (dir = opendir(path)))
-			{
-				closedir(dir);
+			if ((*tmp)->type != 'l' && (dir = opendir(path)) && !closedir(dir)
+									&& ft_printf("\n%s:\n", path))
 				ft_ls_rec(path, flags);
-			}
-			else if (!dir)
+			else if (errno == 13 && ft_printf("\n%s:\n", path))
 				ft_ls_perror((*tmp)->filename);
 			free(path);
 		}

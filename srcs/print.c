@@ -6,13 +6,13 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 18:20:13 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/31 20:43:10 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/02 16:44:12 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void 	print_ls(char* flags, t_file **files)
+void	print_ls(char *flags, t_file **files)
 {
 	t_file **save;
 
