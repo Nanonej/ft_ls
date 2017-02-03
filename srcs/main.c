@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/02 16:47:24 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/03 14:38:13 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 void			ft_ls(char *name, char *flags)
 {
 	t_file	*iflink;
+	t_file	**files;
 
 	if (!(iflink = fill_file_data(name, name)))
 		return ;
 	if (iflink && flags[2] == 'l' && iflink->type == 'l')
 	{
+		ls_padding(flags, &iflink);
 		//
 		ft_printf("[WIP] - %c%s    %d %s    %s    %lld %s %s\n", iflink->type,
 					iflink->modes, iflink->nlinks, iflink->owner,
@@ -32,8 +34,8 @@ void			ft_ls(char *name, char *flags)
 		ft_ls_rec(name, flags);
 	else
 	{
-		//
-		ft_printf("[WIP]\n");
+		check_malloc(files = ft_init_al(flags, name));
+		free_al(files);
 	}
 }
 

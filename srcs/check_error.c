@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:54:07 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/29 18:29:03 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/03 15:42:29 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_ls_perror(char *s)
 {
-	write(2, "ft_ls: ", 7);
+	ft_putstr_fd("ft_ls: ", 2);
 	perror(s);
 }
 
@@ -36,4 +36,15 @@ void	check_malloc(void *ptr)
 		ft_ls_perror(NULL);
 		exit(EXIT_FAILURE);
 	}
+}
+
+int		check_owner(char *flags, t_file **files)
+{
+	if (!(*files)->owner && (flags[1] == 'a' || (*files)->filename[0] != '.'))
+	{
+		ft_printf("ft_ls: %s: Error file or directory haven't an owner\n",
+					(*files)->filename);
+		return (0);
+	}
+	return (1);
 }

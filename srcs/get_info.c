@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 15:43:15 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/31 19:04:41 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/03 13:56:18 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_path(char *name, char *file_name)
 	return (path);
 }
 
-int		getacl(char *name)
+int		get_acl(char *name)
 {
 	acl_t		facl;
 	acl_entry_t	ae;
@@ -91,34 +91,6 @@ char	*get_modes(t_stat filestat, t_file *f_d)
 		(f_d->type == 'l' && listxattr(f_d->path, NULL, 0, XATTR_NOFOLLOW) > 0))
 		str[9] = '@';
 	else
-		str[9] = (getacl(f_d->path) ? '+' : ' ');
+		str[9] = (get_acl(f_d->path) ? '+' : ' ');
 	return (str);
-}
-
-char	*get_color(t_file *file_data)
-{
-	if (file_data->type == 'd' && file_data->modes[7] == 'w' &&
-		(file_data->modes[8] == 't' || file_data->modes[8] == 'T'))
-		return ("\033[38;5;000m\033[48;5;002m");
-	if (file_data->type == 'd' && file_data->modes[7] == 'w')
-		return ("\033[38;5;000m\033[48;5;011m");
-	if (file_data->type == 'd')
-		return ("\033[38;5;014m");
-	if (file_data->type == 'l')
-		return ("\033[38;5;005m");
-	if (file_data->type == 's')
-		return ("\033[38;5;002m");
-	if (file_data->type == 'p')
-		return ("\033[38;5;011m");
-	if (file_data->type == 'b')
-		return ("\033[38;5;004m\033[48;5;014m");
-	if (file_data->type == 'c')
-		return ("\033[38;5;004m\033[48;5;011m");
-	if (file_data->modes[2] == 's' || file_data->modes[2] == 'S')
-		return ("\033[38;5;000m\033[48;5;001m");
-	if (file_data->modes[5] == 's' || file_data->modes[5] == 'S')
-		return ("\033[38;5;000m\033[48;5;014m");
-	if (ft_strfind(file_data->modes, 'x') != -1)
-		return ("\033[38;5;001m");
-	return ("\033[38;5;007m");
 }

@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/02 16:39:34 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/03 14:54:05 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ typedef struct			s_file
 	char					*filename;
 	char					type;
 	char					*modes;
-	int						nlinks;
+	char					*nlinks;
 	char					*owner;
 	char					*group;
-	long long int			size;
+	char					*size;
 	char					*date;
 	int						total;
 	char					*path;
@@ -68,6 +68,7 @@ t_data					*al_end(t_data *al);
 void					ft_ls_perror(char *s);
 void					*palloc(size_t size);
 void					check_malloc(void *ptr);
+int						check_owner(char *flags, t_file **files);
 
 void					free_struct(t_file *file_data);
 void					free_al(t_file **files);
@@ -78,13 +79,16 @@ t_file					*fill_file_data(char *name, char *path);
 t_file					**ft_init_al(char *flags, char *name);
 
 char					*get_path(char *name, char *file_name);
-int						getacl(char *name);
+int						get_acl(char *name);
 char					get_type(t_stat filestat, t_file **files);
 char					*get_modes(t_stat filestat, t_file *f_d);
-char					*get_color(t_file *file_data);
 
 void					ft_ls_rec(char *name, char *flags);
 
+void					ls_padding(char *flags, t_file **files);
+
+char					*print_color(t_file *file_data);
 void					print_ls(char *flags, t_file **files);
+void					print_opt_l(char *flags, t_file **files);
 
 #endif

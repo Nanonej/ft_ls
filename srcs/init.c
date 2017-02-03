@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/02 16:47:57 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/03 15:43:58 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void 	init_file(t_file *file_data)
 	file_data->filename = NULL;
 	file_data->type = 0;
 	file_data->modes = NULL;
-	file_data->nlinks = 0;
+	file_data->nlinks = NULL;
 	file_data->owner = NULL;
 	file_data->group = NULL;
-	file_data->size = 0;
+	file_data->size = NULL;
 	file_data->date = NULL;
 	file_data->total = 0;
 	file_data->path = NULL;
@@ -46,12 +46,12 @@ t_file			*fill_file_data(char *name, char *path)
 	}
 	file_data->type = get_type(filestat, &file_data);
 	check_malloc(file_data->modes = get_modes(filestat, file_data));
-	file_data->nlinks = filestat.st_nlink;
+	check_malloc(file_data->nlinks = ft_strdup(ft_itoa(filestat.st_nlink)));
 	if ((pwd = getpwuid(filestat.st_uid)))
 		check_malloc(file_data->owner = ft_strdup(pwd->pw_name));
 	if ((grp = getgrgid(filestat.st_gid)))
 		check_malloc(file_data->group = ft_strdup(grp->gr_name));
-	file_data->size = filestat.st_size;
+	check_malloc(file_data->size = ft_strdup(ft_itoa(filestat.st_size)));
 	check_malloc(file_data->date = ft_strsub(ctime(&filestat.st_mtime), 4, 12));
 	file_data->total = filestat.st_blocks;
 	return (file_data);
@@ -79,7 +79,7 @@ t_file			**ft_init_al(char *flags, char *name)
 		free(path);
 	}
 	if (flags[2] == 'l')
-		ft_printf("print -l\n");
+		print_opt_l(flags, files);
 	else
 		print_ls(flags, files);
 	closedir(dir);

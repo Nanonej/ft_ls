@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/17 16:18:14 by aridolfi          #+#    #+#              #
-#    Updated: 2017/02/01 15:29:55 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/02/03 14:37:03 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS	= 					\
 			get_info.c		\
 			init.c			\
 			main.c			\
+			padding.c		\
 			print.c			\
 			recursive.c		\
 
