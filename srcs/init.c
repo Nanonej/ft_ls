@@ -6,13 +6,13 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/03 15:43:58 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/04 17:03:10 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void 	init_file(t_file *file_data)
+static	void	init_file(t_file *file_data)
 {
 	file_data->filename = NULL;
 	file_data->type = 0;

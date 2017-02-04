@@ -6,13 +6,13 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 17:21:27 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/02 16:45:41 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/04 17:03:37 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void 	ft_ls_rec(char *name, char *flags)
+void	ft_ls_rec(char *name, char *flags)
 {
 	char	*path;
 	t_file	**files;

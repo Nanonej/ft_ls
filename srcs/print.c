@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 18:20:13 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/03 15:02:26 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/04 17:06:58 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	print_ls(char *flags, t_file **files)
 void	print_total(char *flags, t_file **files)
 {
 	t_file	**save;
-	int 	n;
+	int		n;
 
 	n = 0;
 	save = files;
@@ -85,7 +85,7 @@ void	print_opt_l(char *flags, t_file **files)
 	{
 		if (check_owner(flags, files) &&
 			((flags[1] == 'a' || (*files)->filename[0] != '.') &&
-		  		(*files)->type != 'c'))
+				(*files)->type != 'c'))
 		{
 			if ((*files)->type == 'l')
 				ft_printf("WIP");/**/

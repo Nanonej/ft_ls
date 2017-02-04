@@ -6,13 +6,13 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 18:13:24 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/03 15:01:09 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/04 17:08:19 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static t_file 	**ls_padding_own(t_file **files)
+static t_file	**ls_padding_own(t_file **files)
 {
 	t_file	**save;
 	char	*tmp;
@@ -38,7 +38,7 @@ static t_file 	**ls_padding_own(t_file **files)
 	return (save);
 }
 
-static t_file 	**ls_padding_grp(t_file **files)
+static t_file	**ls_padding_grp(t_file **files)
 {
 	t_file	**save;
 	char	*tmp;
@@ -64,7 +64,7 @@ static t_file 	**ls_padding_grp(t_file **files)
 	return (save);
 }
 
-static t_file 	**ls_padding_nlinks(char *flags, t_file **files)
+static t_file	**ls_padding_nlinks(char *flags, t_file **files)
 {
 	t_file	**save;
 	char	*tmp;
@@ -91,7 +91,7 @@ static t_file 	**ls_padding_nlinks(char *flags, t_file **files)
 	return (save);
 }
 
-static t_file 	**ls_padding_size(char *flags, t_file **files)
+static t_file	**ls_padding_size(char *flags, t_file **files)
 {
 	t_file	**save;
 	char	*tmp;
