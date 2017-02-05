@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 22:47:07 by aridolfi          #+#    #+#              #
-#    Updated: 2017/01/28 11:25:44 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/02/05 19:14:45 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRCS 	=	free_swap.c			\
 			ft_strcpy.c			\
 			ft_strdel.c			\
 			ft_strdup.c			\
+			ft_strendcpy.c		\
 			ft_strequ.c			\
 			ft_strfind.c		\
 			ft_striter.c		\

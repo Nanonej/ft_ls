@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 19:00:36 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/19 11:47:53 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/05 19:14:15 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ char			*ft_itoa_base(uintmax_t n, int base, char sign);
 void			free_swap(char **src, char *dst);
 void			*ft_memcat(void *s1, void *s2, size_t len1, size_t len2);
 void			ft_strupper(char *s);
+char			*ft_strendcpy(char *dest, const char *src);
 
 #endif
