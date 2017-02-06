@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 18:13:24 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 14:35:23 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 18:03:13 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,11 @@ static t_file	**ls_padding_grp(t_file **files)
 	{
 		check_malloc(tmp = ft_strnew(size));
 		ft_memset(tmp, ' ', size);
-		n = ft_strlen((*files)->group);
-		free_swap(&(*files)->group, ft_strncpy(tmp, (*files)->group, n));
+		if ((*files)->group)
+		{
+			n = ft_strlen((*files)->group);
+			free_swap(&(*files)->group, ft_strncpy(tmp, (*files)->group, n));
+		}
 	}
 	return (save);
 }

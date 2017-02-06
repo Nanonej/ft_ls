@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 14:52:36 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 17:43:28 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
-# include <stdio.h> ////////////////////////////////////////////////////////////
 # include <stdlib.h>
 # include <sys/acl.h>
 # include <errno.h>
@@ -45,6 +44,7 @@ typedef struct			s_file
 	char					*group;
 	char					*size;
 	char					*date;
+	long int				itime;
 	int						total;
 	char					*path;
 	int						minor;
@@ -78,11 +78,13 @@ void					ft_ls(char *arg, char *flags);
 t_file					*fill_file_data(char *name, char *path);
 t_file					**ft_init_al(char *flags, char *name);
 
+void 					ls_sort(char *flags, t_file **files);
+
 char					*get_path(char *name, char *file_name);
 int						get_acl(char *name);
 char					get_type(t_stat filestat, t_file **files);
 char					*get_modes(t_stat filestat, t_file *f_d);
-char					*get_date(t_stat filestat);
+void					get_date(t_stat filestat, t_file **fdata);
 
 void					ft_ls_rec(char *name, char *flags);
 

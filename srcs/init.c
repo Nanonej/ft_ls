@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 15:05:28 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 18:11:35 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static	void	init_file(t_file *file_data)
 	file_data->group = NULL;
 	file_data->size = NULL;
 	file_data->date = NULL;
+	file_data->itime = 0;
 	file_data->total = 0;
 	file_data->path = NULL;
 	file_data->minor = 0;
@@ -52,7 +53,7 @@ t_file			*fill_file_data(char *name, char *path)
 	if ((grp = getgrgid(filestat.st_gid)))
 		check_malloc(file_data->group = ft_strdup(grp->gr_name));
 	check_malloc(file_data->size = ft_strdup(ft_itoa(filestat.st_size)));
-	check_malloc(file_data->date = get_date(filestat));
+	get_date(filestat, &file_data);
 	file_data->total = filestat.st_blocks;
 	return (file_data);
 }
@@ -75,9 +76,9 @@ t_file			**ft_init_al(char *flags, char *name)
 	{
 		check_malloc(path = get_path(name, dirent->d_name));
 		al_add(&files, fill_file_data(dirent->d_name, path));
-		//
 		free(path);
 	}
+	ls_sort(flags, files);
 	if (flags[2] == 'l')
 		print_opt_l(flags, files);
 	else

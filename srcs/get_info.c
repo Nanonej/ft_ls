@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 15:43:15 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/04 18:11:42 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 17:41:45 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,15 @@ char	*get_modes(t_stat filestat, t_file *f_d)
 	return (str);
 }
 
-char	*get_date(t_stat filestat)
+void	get_date(t_stat filestat, t_file **fdata)
 {
 	char *mmdd;
 	char *year;
 	char *ret;
 
 	if (*&filestat.st_mtime > (time(NULL) - ((((60 * 60) * 24) * 30) * 6)))
-		return (ft_strsub(ctime(&filestat.st_mtime), 4, 12));
+		check_malloc((*fdata)->date = ft_strsub(ctime(&filestat.st_mtime),
+												4, 12));
 	else
 	{
 		mmdd = ft_strsub(ctime(&filestat.st_mtime), 4, 7);
@@ -110,6 +111,7 @@ char	*get_date(t_stat filestat)
 		ret = ft_strjoin(mmdd, year);
 		free(mmdd);
 		free(year);
-		return (ret);
+		(*fdata)->date = ret;
 	}
+	(*fdata)->itime = filestat.st_mtime;
 }

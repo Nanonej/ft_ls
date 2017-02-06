@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/17 16:18:14 by aridolfi          #+#    #+#              #
-#    Updated: 2017/02/03 14:37:03 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/02/06 15:17:56 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS	= 					\
 			free.c			\
 			get_info.c		\
 			init.c			\
+			ls_sort.c		\
 			main.c			\
 			padding.c		\
 			print.c			\

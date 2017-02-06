@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 18:20:13 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 14:26:26 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 17:42:35 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			print_total(char *flags, t_file **files)
 	ft_printf("total %d\n", n);
 }
 
-static void 	print_cfile(t_file **files)
+static void		print_cfile(t_file **files)
 {
 	while ((*files)->major / 256 > 0)
 		(*files)->major /= 256;
@@ -81,7 +81,7 @@ static void 	print_cfile(t_file **files)
 				(*files)->modes, (*files)->nlinks, (*files)->owner,
 					(*files)->group, (*files)->major, (*files)->minor,
 						(*files)->date, print_color(*files), (*files)->filename,
-						 	RESET_COLORS);
+							RESET_COLORS);
 }
 
 void			print_opt_l(char *flags, t_file **files)
