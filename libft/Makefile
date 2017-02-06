@@ -6,7 +6,7 @@
 #    By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 22:47:07 by aridolfi          #+#    #+#              #
-#    Updated: 2017/02/05 19:14:45 by aridolfi         ###   ########.fr        #
+#    Updated: 2017/02/06 14:51:12 by aridolfi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ SRCS 	=	free_swap.c			\
 			ft_tolower.c		\
 			ft_toupper.c		\
 			get_next_line.c		\
+			palloc.c			\
 			\
 			printf/ft_printf.c	\
 			printf/init.c		\
