@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 18:20:13 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 17:42:35 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 22:18:04 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void			print_opt_l(char *flags, t_file **files)
 	t_file	**tmp;
 	char	*ldest;
 
-	check_malloc(ldest = ft_strdup(""));
 	ls_padding(flags, files);
 	if (flags[1] == 'a' || al_size(files) > 2)
 		print_total(flags, files);
@@ -100,13 +99,14 @@ void			print_opt_l(char *flags, t_file **files)
 			if ((flags[1] == 'a' || (*tmp)->filename[0] != '.') &&
 			(*tmp)->type != 'c')
 			{
+				check_malloc(ldest = ft_strdup(""));
 				if ((*tmp)->type == 'l')
-					check_malloc(ldest = link_dest(&(*tmp), 0));
+					free_swap(&ldest, link_dest(&(*tmp), 0));
 				ft_printf("%c%s %s %s  %s  %s %s %s%s%s%s\n", (*tmp)->type,
 					(*tmp)->modes, (*tmp)->nlinks, (*tmp)->owner,
 					(*tmp)->group, (*tmp)->size, (*tmp)->date,
 					print_color(*tmp), (*tmp)->filename, RESET_COLORS, ldest);
-				free_swap(&ldest, ft_strdup(""));
+				free(ldest);
 			}
 			else if ((*tmp)->type == 'c')
 				print_cfile(tmp);

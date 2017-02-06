@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 15:18:01 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 17:40:58 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 22:01:10 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void		ls_reverse_al(t_file **files)
 	}
 }
 
-void			ls_sort(char *flags, t_file **files)
+void			ls_sort_print(char *flags, t_file **files)
 {
 	if (flags[4] != 't')
 		ls_sort_name(files);
@@ -86,4 +86,8 @@ void			ls_sort(char *flags, t_file **files)
 		ls_sort_date(files);
 	if (flags[3] == 'r')
 		ls_reverse_al(files);
+	if (flags[2] == 'l')
+		print_opt_l(flags, files);
+	else
+		print_ls(flags, files);
 }

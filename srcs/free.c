@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 14:42:59 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 17:10:05 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 20:09:03 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ void	free_struct(t_file *file_data)
 		free(file_data->filename);
 	if (file_data->modes)
 		free(file_data->modes);
+	if (file_data->nlinks)
+		free(file_data->nlinks);
 	if (file_data->owner)
 		free(file_data->owner);
 	if (file_data->group)
 		free(file_data->group);
+	if (file_data->size)
+		free(file_data->size);
 	if (file_data->date)
 		free(file_data->date);
 	if (file_data->path)

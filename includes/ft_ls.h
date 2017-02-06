@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 17:43:28 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 22:01:22 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void					ft_ls(char *arg, char *flags);
 t_file					*fill_file_data(char *name, char *path);
 t_file					**ft_init_al(char *flags, char *name);
 
-void 					ls_sort(char *flags, t_file **files);
+void					ls_sort_print(char *flags, t_file **files);
 
 char					*get_path(char *name, char *file_name);
 int						get_acl(char *name);

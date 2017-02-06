@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 18:11:35 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 22:00:38 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ t_file			*fill_file_data(char *name, char *path)
 	}
 	file_data->type = get_type(filestat, &file_data);
 	check_malloc(file_data->modes = get_modes(filestat, file_data));
-	check_malloc(file_data->nlinks = ft_strdup(ft_itoa(filestat.st_nlink)));
+	check_malloc(file_data->nlinks = ft_itoa(filestat.st_nlink));
 	if ((pwd = getpwuid(filestat.st_uid)))
 		check_malloc(file_data->owner = ft_strdup(pwd->pw_name));
 	if ((grp = getgrgid(filestat.st_gid)))
 		check_malloc(file_data->group = ft_strdup(grp->gr_name));
-	check_malloc(file_data->size = ft_strdup(ft_itoa(filestat.st_size)));
+	check_malloc(file_data->size = ft_itoa(filestat.st_size));
 	get_date(filestat, &file_data);
 	file_data->total = filestat.st_blocks;
 	return (file_data);
@@ -69,6 +69,7 @@ t_file			**ft_init_al(char *flags, char *name)
 	if (!(dir = opendir(name)))
 	{
 		ft_ls_perror(name);
+		free(name);
 		return ((files = NULL));
 	}
 	files = al_create();
@@ -78,11 +79,8 @@ t_file			**ft_init_al(char *flags, char *name)
 		al_add(&files, fill_file_data(dirent->d_name, path));
 		free(path);
 	}
-	ls_sort(flags, files);
-	if (flags[2] == 'l')
-		print_opt_l(flags, files);
-	else
-		print_ls(flags, files);
+	ls_sort_print(flags, files);
 	closedir(dir);
+	free(name);
 	return (files);
 }

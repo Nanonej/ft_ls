@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 14:30:17 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 22:35:22 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,8 @@ static int		ls_check_link(char *name, char *flags)
 		free_al(iflink);
 		return (TRUE);
 	}
-	if (!(*iflink))
-	{
-		free_al(iflink);
-		return (TRUE);
-	}
 	free_al(iflink);
-	return (FALSE);
+	return (!(*iflink) ? TRUE : FALSE);
 }
 
 void			ft_ls(char *name, char *flags)
@@ -114,5 +109,7 @@ int				main(int argc, char **argv)
 		argc--;
 	}
 	ft_strdel(&flags);
+	while (1 < 2)
+		;
 	return (0);
 }

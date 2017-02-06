@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 15:43:15 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 17:41:45 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 21:53:06 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ char	*get_path(char *name, char *file_name)
 	char	*path;
 
 	if (name[ft_strlen(name) - 1] != '/')
+	{
 		check_malloc(name = ft_strjoin(name, "/"));
-	check_malloc(path = ft_strjoin(name, file_name));
+		check_malloc(path = ft_strjoin(name, file_name));
+		free(name);
+	}
+	else
+		check_malloc(path = ft_strjoin(name, file_name));
 	return (path);
 }
 
