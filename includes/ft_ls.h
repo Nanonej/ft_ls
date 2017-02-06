@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:42:20 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/03 14:54:05 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 14:52:36 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ size_t					al_size(t_data *al);
 t_data					*al_end(t_data *al);
 
 void					ft_ls_perror(char *s);
-void					*palloc(size_t size);
 void					check_malloc(void *ptr);
 int						check_owner(char *flags, t_file **files);
 
 void					free_struct(t_file *file_data);
 void					free_al(t_file **files);
 
+char					*link_dest(t_file **file_data, int iflink);
 void					ft_ls(char *arg, char *flags);
 
 t_file					*fill_file_data(char *name, char *path);
@@ -82,6 +82,7 @@ char					*get_path(char *name, char *file_name);
 int						get_acl(char *name);
 char					get_type(t_stat filestat, t_file **files);
 char					*get_modes(t_stat filestat, t_file *f_d);
+char					*get_date(t_stat filestat);
 
 void					ft_ls_rec(char *name, char *flags);
 

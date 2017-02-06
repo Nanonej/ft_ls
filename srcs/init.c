@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/04 17:03:10 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 15:00:27 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_file			*fill_file_data(char *name, char *path)
 	if ((grp = getgrgid(filestat.st_gid)))
 		check_malloc(file_data->group = ft_strdup(grp->gr_name));
 	check_malloc(file_data->size = ft_strdup(ft_itoa(filestat.st_size)));
-	check_malloc(file_data->date = ft_strsub(ctime(&filestat.st_mtime), 4, 12));
+	check_malloc(file_data->date = get_date(filestat));
 	file_data->total = filestat.st_blocks;
 	return (file_data);
 }
@@ -76,6 +76,7 @@ t_file			**ft_init_al(char *flags, char *name)
 	{
 		check_malloc(path = get_path(name, dirent->d_name));
 		al_add(&files, fill_file_data(dirent->d_name, path));
+		//
 		free(path);
 	}
 	if (flags[2] == 'l')

@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 18:13:24 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/04 17:08:19 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 14:35:23 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static t_file	**ls_padding_own(t_file **files)
 	t_file	**save;
 	char	*tmp;
 	int		size;
+	int		n;
 
 	size = 0;
 	save = files;
@@ -26,14 +27,13 @@ static t_file	**ls_padding_own(t_file **files)
 			size = ft_strlen((*files)->owner);
 		files++;
 	}
-	files = save;
-	while (files != al_end(save))
+	files = save - 1;
+	while (++files != al_end(save))
 	{
 		check_malloc(tmp = ft_strnew(size));
 		ft_memset(tmp, ' ', size);
-		size = ft_strlen((*files)->owner);
-		free_swap(&(*files)->owner, ft_strncpy(tmp, (*files)->owner, size));
-		files++;
+		n = ft_strlen((*files)->owner);
+		free_swap(&(*files)->owner, ft_strncpy(tmp, (*files)->owner, n));
 	}
 	return (save);
 }
@@ -43,6 +43,7 @@ static t_file	**ls_padding_grp(t_file **files)
 	t_file	**save;
 	char	*tmp;
 	int		size;
+	int		n;
 
 	size = 0;
 	save = files;
@@ -52,14 +53,13 @@ static t_file	**ls_padding_grp(t_file **files)
 			size = ft_strlen((*files)->group);
 		files++;
 	}
-	files = save;
-	while (files != al_end(save))
+	files = save - 1;
+	while (++files != al_end(save))
 	{
 		check_malloc(tmp = ft_strnew(size));
 		ft_memset(tmp, ' ', size);
-		size = ft_strlen((*files)->group);
-		free_swap(&(*files)->group, ft_strncpy(tmp, (*files)->group, size));
-		files++;
+		n = ft_strlen((*files)->group);
+		free_swap(&(*files)->group, ft_strncpy(tmp, (*files)->group, n));
 	}
 	return (save);
 }
@@ -79,14 +79,12 @@ static t_file	**ls_padding_nlinks(char *flags, t_file **files)
 				size = ft_strlen((*files)->nlinks);
 		files++;
 	}
-	files = save;
-	while (files != al_end(save))
+	files = save - 1;
+	while (++files != al_end(save))
 	{
 		check_malloc(tmp = ft_strnew(size));
 		ft_memset(tmp, ' ', size);
-		size = ft_strlen((*files)->nlinks);
-		free_swap(&(*files)->nlinks, ft_strncpy(tmp, (*files)->nlinks, size));
-		files++;
+		free_swap(&(*files)->nlinks, ft_strendcpy(tmp, (*files)->nlinks));
 	}
 	return (save);
 }
@@ -106,14 +104,12 @@ static t_file	**ls_padding_size(char *flags, t_file **files)
 				size = ft_strlen((*files)->size);
 		files++;
 	}
-	files = save;
-	while (files != al_end(save))
+	files = save - 1;
+	while (++files != al_end(save))
 	{
 		check_malloc(tmp = ft_strnew(size));
 		ft_memset(tmp, ' ', size);
-		size = ft_strlen((*files)->size);
-		free_swap(&(*files)->size, ft_strncpy(tmp, (*files)->size, size));
-		files++;
+		free_swap(&(*files)->size, ft_strendcpy(tmp, (*files)->size));
 	}
 	return (save);
 }

@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:54:07 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/03 15:42:29 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 14:48:59 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,6 @@ void	ft_ls_perror(char *s)
 {
 	ft_putstr_fd("ft_ls: ", 2);
 	perror(s);
-}
-
-void	*palloc(size_t size)
-{
-	void *ptr;
-
-	ptr = malloc(size);
-	if (ptr == NULL)
-		exit(1);
-	ft_bzero(ptr, size);
-	return (ptr);
 }
 
 void	check_malloc(void *ptr)

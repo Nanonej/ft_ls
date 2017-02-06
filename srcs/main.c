@@ -6,30 +6,65 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/03 14:38:13 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 14:30:17 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+char			*link_dest(t_file **fdata, int iflink)
+{
+	char	buf[4096];
+
+	if (iflink)
+		check_malloc((*fdata)->path = ft_strjoin((*fdata)->path,
+												(*fdata)->filename));
+	if ((*fdata)->filename[ft_strlen((*fdata)->filename) - 1] == '/')
+		(*fdata)->filename[ft_strlen((*fdata)->filename) - 1] = '\0';
+	if ((*fdata)->filename[0] != '/')
+		check_malloc((*fdata)->filename = ft_strjoin("/", (*fdata)->filename));
+	if ((readlink((*fdata)->path, buf, 4096)) == -1)
+	{
+		ft_ls_perror((*fdata)->path);
+		return (NULL);
+	}
+	return (ft_strjoin(" -> ", buf));
+}
+
+static int		ls_check_link(char *name, char *flags)
+{
+	t_file	**iflink;
+	char	*ldest;
+
+	iflink = al_create();
+	al_add(&iflink, fill_file_data(name, name));
+	if ((*iflink) && flags[2] == 'l' && (*iflink)->type == 'l')
+	{
+		ls_padding(flags, iflink);
+		(*iflink)->path[0] = '\0';
+		check_malloc(ldest = link_dest(&(*iflink), 1));
+		ft_printf("%c%s %s %s  %s  %s %s %s%s%s%s\n", (*iflink)->type,
+			(*iflink)->modes, (*iflink)->nlinks, (*iflink)->owner,
+			(*iflink)->group, (*iflink)->size, (*iflink)->date,
+			print_color(*iflink), (*iflink)->filename, RESET_COLORS, ldest);
+		free_al(iflink);
+		return (TRUE);
+	}
+	if (!(*iflink))
+	{
+		free_al(iflink);
+		return (TRUE);
+	}
+	free_al(iflink);
+	return (FALSE);
+}
+
 void			ft_ls(char *name, char *flags)
 {
-	t_file	*iflink;
 	t_file	**files;
 
-	if (!(iflink = fill_file_data(name, name)))
+	if (ls_check_link(name, flags))
 		return ;
-	if (iflink && flags[2] == 'l' && iflink->type == 'l')
-	{
-		ls_padding(flags, &iflink);
-		//
-		ft_printf("[WIP] - %c%s    %d %s    %s    %lld %s %s\n", iflink->type,
-					iflink->modes, iflink->nlinks, iflink->owner,
-					 iflink->group, iflink->size, iflink->date,
-					  iflink->filename);
-		return ;
-	}
-	free_struct(iflink);
 	if (flags[0] == 'R')
 		ft_ls_rec(name, flags);
 	else

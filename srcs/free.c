@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 14:42:59 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/01/29 18:29:38 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 13:51:06 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ void	free_al(t_file **files)
 {
 	t_file **tmp;
 
-	tmp = files;
-	while (tmp != al_end(files))
+	if (*files)
 	{
-		free_struct(*tmp);
-		tmp++;
+		tmp = files;
+		while (tmp != al_end(files))
+		{
+			free_struct(*tmp);
+			tmp++;
+		}
 	}
 	al_destroy(&files);
 }
