@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 22:41:13 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 14:56:21 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 15:06:53 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ char	*ft_strnew(size_t size)
 {
 	char *new;
 
-	if ((new = (char*)palloc(sizeof(char) * (size + 1))) == NULL)
-		return (NULL);
+	new = (char*)palloc(sizeof(char) * (size + 1));
 	ft_bzero(new, (size + 1));
 	return (new);
 }

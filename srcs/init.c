@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 15:00:27 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/06 15:05:28 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ t_file			**ft_init_al(char *flags, char *name)
 	t_file		**files;
 	char		*path;
 
-	if (name[ft_strlen(name) - 1] != '/')
-		check_malloc(name = ft_strjoin(name, "/"));
+	name = ft_strjoin(name, (name[ft_strlen(name) - 1] != '/' ? "/" : ""));
 	if (!(dir = opendir(name)))
 	{
 		ft_ls_perror(name);
