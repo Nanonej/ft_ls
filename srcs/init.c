@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:41:32 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 22:00:38 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:31:14 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_file			**ft_init_al(char *flags, char *name)
 	DIR			*dir;
 	t_dirent	*dirent;
 	t_file		**files;
+	t_file		*tmp;
 	char		*path;
 
 	name = ft_strjoin(name, (name[ft_strlen(name) - 1] != '/' ? "/" : ""));
@@ -76,7 +77,8 @@ t_file			**ft_init_al(char *flags, char *name)
 	while ((dirent = readdir(dir)))
 	{
 		check_malloc(path = get_path(name, dirent->d_name));
-		al_add(&files, fill_file_data(dirent->d_name, path));
+		if ((tmp = fill_file_data(dirent->d_name, path)))
+			al_add(&files, tmp);
 		free(path);
 	}
 	ls_sort_print(flags, files);

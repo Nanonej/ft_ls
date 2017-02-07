@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 22:35:22 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:33:39 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 char			*link_dest(t_file **fdata, int iflink)
 {
-	char	buf[4096];
+	char	buf[1024];
 
+	ft_bzero(buf, 1024);
 	if (iflink)
 		check_malloc((*fdata)->path = ft_strjoin((*fdata)->path,
 												(*fdata)->filename));
 	if ((*fdata)->filename[ft_strlen((*fdata)->filename) - 1] == '/')
 		(*fdata)->filename[ft_strlen((*fdata)->filename) - 1] = '\0';
 	if ((*fdata)->filename[0] != '/')
-		check_malloc((*fdata)->filename = ft_strjoin("/", (*fdata)->filename));
-	if ((readlink((*fdata)->path, buf, 4096)) == -1)
+		free_swap(&(*fdata)->filename, ft_strjoin("/", (*fdata)->filename));
+	if ((readlink((*fdata)->path, buf, 1024)) == -1)
 	{
 		ft_ls_perror((*fdata)->path);
 		return (NULL);

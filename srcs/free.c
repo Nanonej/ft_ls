@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 14:42:59 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 20:09:03 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/07 15:08:08 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	free_al(t_file **files)
 {
 	t_file **tmp;
 
-	if (*files)
+	if (files)
 	{
 		tmp = files;
 		while (tmp != al_end(files))
@@ -46,5 +46,7 @@ void	free_al(t_file **files)
 			tmp++;
 		}
 	}
+	else
+		free(*files);
 	al_destroy(&files);
 }
