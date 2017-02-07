@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/07 18:33:39 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/07 19:34:10 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,10 @@ int				main(int argc, char **argv)
 
 	argv++;
 	check_malloc((flags = ft_strnew(5)));
-	while (argc > 1 && **argv == '-' && ft_strlen(*argv) > 1)
+	while (argc > 1 && **argv == '-')
 	{
+		if (**argv == '-' && *(*argv + 1) == '\0')
+			return (ft_printf("usage: ./ft_ls [-Ralrt] [file ...]\n"));
 		get_flags(flags, *argv);
 		argv++;
 		argc--;
@@ -110,7 +112,5 @@ int				main(int argc, char **argv)
 		argc--;
 	}
 	ft_strdel(&flags);
-	while (1 < 2)
-		;
 	return (0);
 }
