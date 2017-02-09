@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 15:43:15 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/07 22:49:14 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/09 13:35:20 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	get_type(t_stat filestat, t_file **files)
 		ret = 'l';
 	else if (S_ISSOCK(filestat.st_mode))
 		ret = 's';
-	if ((*files)->type == 'c')
+	if (S_ISCHR(filestat.st_mode) || S_ISBLK(filestat.st_mode))
 	{
 		(*files)->minor = filestat.st_rdev % 256;
 		(*files)->major = filestat.st_rdev;

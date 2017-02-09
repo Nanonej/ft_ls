@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 18:20:13 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 22:18:04 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/09 13:29:32 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char			*print_color(t_file *file_data)
 		(file_data->modes[8] == 't' || file_data->modes[8] == 'T'))
 		return ("\033[38;5;000m\033[48;5;002m");
 	if (file_data->type == 'd' && file_data->modes[7] == 'w')
-		return ("\033[38;5;000m\033[48;5;011m");
+		return ("\033[38;5;000m\033[48;5;003m");
 	if (file_data->type == 'd')
 		return ("\033[38;5;014m");
 	if (file_data->type == 'l')
@@ -28,13 +28,13 @@ char			*print_color(t_file *file_data)
 	if (file_data->type == 'p')
 		return ("\033[38;5;011m");
 	if (file_data->type == 'b')
-		return ("\033[38;5;004m\033[48;5;014m");
+		return ("\033[38;5;004m\033[48;5;006m");
 	if (file_data->type == 'c')
-		return ("\033[38;5;004m\033[48;5;011m");
+		return ("\033[38;5;004m\033[48;5;003m");
 	if (file_data->modes[2] == 's' || file_data->modes[2] == 'S')
 		return ("\033[38;5;000m\033[48;5;001m");
 	if (file_data->modes[5] == 's' || file_data->modes[5] == 'S')
-		return ("\033[38;5;000m\033[48;5;014m");
+		return ("\033[38;5;000m\033[48;5;006m");
 	if (ft_strfind(file_data->modes, 'x') != -1)
 		return ("\033[38;5;001m");
 	return ("\033[38;5;007m");
@@ -73,7 +73,7 @@ void			print_total(char *flags, t_file **files)
 	ft_printf("total %d\n", n);
 }
 
-static void		print_cfile(t_file **files)
+static void		print_cbfile(t_file **files)
 {
 	while ((*files)->major / 256 > 0)
 		(*files)->major /= 256;
@@ -97,7 +97,7 @@ void			print_opt_l(char *flags, t_file **files)
 		if (check_owner(flags, tmp))
 		{
 			if ((flags[1] == 'a' || (*tmp)->filename[0] != '.') &&
-			(*tmp)->type != 'c')
+			((*tmp)->type != 'c' && (*tmp)->type != 'b'))
 			{
 				check_malloc(ldest = ft_strdup(""));
 				if ((*tmp)->type == 'l')
@@ -108,7 +108,7 @@ void			print_opt_l(char *flags, t_file **files)
 					print_color(*tmp), (*tmp)->filename, RESET_COLORS, ldest);
 				free(ldest);
 			}
-			else if ((*tmp)->type == 'c')
-				print_cfile(tmp);
+			else if ((*tmp)->type == 'c' || (*tmp)->type == 'b')
+				print_cbfile(tmp);
 		}
 }
