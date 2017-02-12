@@ -6,7 +6,7 @@
 /*   By: tgauvrit <tgauvrit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:13:33 by tgauvrit          #+#    #+#             */
-/*   Updated: 2017/01/29 18:28:35 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/12 15:46:47 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void		al_add(t_data **start, t_data data)
 			al->end++;
 			(*start)++;
 		}
+		free(tmp);
 		al->mem = al->end + AL_REALLOC;
 		*start = (t_data*)(al + 1);
 	}

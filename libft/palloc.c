@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 14:49:10 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/06 14:49:38 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/10 14:43:23 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ void	*palloc(size_t size)
 	ptr = malloc(size);
 	if (ptr == NULL)
 		exit(1);
-	ft_bzero(ptr, size);
 	return (ptr);
 }
