@@ -6,7 +6,7 @@
 /*   By: aridolfi <aridolfi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:46:14 by aridolfi          #+#    #+#             */
-/*   Updated: 2017/02/07 19:34:10 by aridolfi         ###   ########.fr       */
+/*   Updated: 2017/02/13 18:12:19 by aridolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@ char			*link_dest(t_file **fdata, int iflink)
 
 	ft_bzero(buf, 1024);
 	if (iflink)
-		check_malloc((*fdata)->path = ft_strjoin((*fdata)->path,
+		free_swap(&(*fdata)->path, ft_strjoin((*fdata)->path,
 												(*fdata)->filename));
 	if ((*fdata)->filename[ft_strlen((*fdata)->filename) - 1] == '/')
 		(*fdata)->filename[ft_strlen((*fdata)->filename) - 1] = '\0';
-	if ((*fdata)->filename[0] != '/')
-		free_swap(&(*fdata)->filename, ft_strjoin("/", (*fdata)->filename));
 	if ((readlink((*fdata)->path, buf, 1024)) == -1)
 	{
 		ft_ls_perror((*fdata)->path);
@@ -34,25 +32,31 @@ char			*link_dest(t_file **fdata, int iflink)
 
 static int		ls_check_link(char *name, char *flags)
 {
-	t_file	**iflink;
+	t_file	**lk;
+	t_file	*tmp;
 	char	*ldest;
 
-	iflink = al_create();
-	al_add(&iflink, fill_file_data(name, name));
-	if ((*iflink) && flags[2] == 'l' && (*iflink)->type == 'l')
+	if ((tmp = fill_file_data(name, name)) == NULL)
+		return (TRUE);
+	lk = al_create();
+	al_add(&lk, tmp);
+	if ((*lk) && flags[2] == 'l' && (*lk)->type == 'l')
 	{
-		ls_padding(flags, iflink);
-		(*iflink)->path[0] = '\0';
-		check_malloc(ldest = link_dest(&(*iflink), 1));
-		ft_printf("%c%s %s %s  %s  %s %s %s%s%s%s\n", (*iflink)->type,
-			(*iflink)->modes, (*iflink)->nlinks, (*iflink)->owner,
-			(*iflink)->group, (*iflink)->size, (*iflink)->date,
-			print_color(*iflink), (*iflink)->filename, RESET_COLORS, ldest);
-		free_al(iflink);
+		ls_padding(flags, lk);
+		(*lk)->path[0] = '\0';
+		check_malloc(ldest = link_dest(&(*lk), 1));
+		ft_printf("%c%s %s %s  %s  %s %s %s%s%s%s\n", (*lk)->type, (*lk)->modes,
+			(*lk)->nlinks, (*lk)->owner, (*lk)->group, (*lk)->size, (*lk)->date,
+			print_color(*lk), (*lk)->filename, RESET_COLORS, ldest);
+		free(ldest);
+		free_al(lk);
 		return (TRUE);
 	}
-	free_al(iflink);
-	return (!(*iflink) ? TRUE : FALSE);
+	if ((*lk)->type == 'd')
+		return (free_al(lk));
+	ls_sort_print(flags, lk);
+	free_al(lk);
+	return (TRUE);
 }
 
 void			ft_ls(char *name, char *flags)
@@ -90,27 +94,28 @@ static void		get_flags(char *flags, char *argv)
 int				main(int argc, char **argv)
 {
 	char	*flags;
+	int		i;
 
-	argv++;
 	check_malloc((flags = ft_strnew(5)));
-	while (argc > 1 && **argv == '-')
+	while (argc > 1 && **(++argv) == '-')
 	{
 		if (**argv == '-' && *(*argv + 1) == '\0')
 			return (ft_printf("usage: ./ft_ls [-Ralrt] [file ...]\n"));
 		get_flags(flags, *argv);
-		argv++;
 		argc--;
 	}
 	if (argc == 1)
 		ft_ls("./", flags);
+	i = argc;
 	while (argc > 1)
 	{
 		if (!ft_strlen(*argv))
 			return (ft_printf("ft_ls: fts_open: No such file or directory\n"));
-		ft_ls(*argv, flags);
-		argv++;
-		argc--;
+		if (i != argc)
+			ft_printf("%s:\n", *argv);
+		ft_ls(*(argv++), flags);
+		if (argc-- > 2)
+			write(1, "\n", 1);
 	}
-	ft_strdel(&flags);
 	return (0);
 }
